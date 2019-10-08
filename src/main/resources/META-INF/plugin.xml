@@ -1,0 +1,62 @@
+<idea-plugin>
+    <id>com.xdxiaodao.code-sync</id>
+    <name>CodeSync</name>
+    <vendor email="xdxiaodao@gmail.com" url="">xiaohuilang</vendor>
+
+    <description><![CDATA[
+    <p>This is a plug-in that automatically synchronizes code to solve problems where similar code exists in multiple projects,
+    and the content of the code (such as status codes) needs to be extracted and
+    shown to operators to help them solve problems as quickly as possible</p>
+    <p>The following features are available: </p>
+    <ul>
+      <li>Auto push special code to remote</li>
+      <li>Auto pull remote content to current project</li>
+    </ul>
+    ]]></description>
+
+    <change-notes><![CDATA[
+      <ul>
+        <li>version 0.0.1<br>
+          This is a plug-in that automatically synchronizes code to solve problems where similar code exists in multiple projects,
+          and the content of the code (such as status codes) needs to be extracted and shown to operators to help them solve problems as quickly as possible.
+          The current version only supports push!
+        </li>
+        <li>version 0.0.2<br>
+          Push task supports multiple files.
+          And a preview of the push task configuration is shown below:
+          <br>
+          <b>Preview</b><br>
+          <br>
+          <img src="https://i.loli.net/2019/08/28/TY1nljoLsAxwaIS.jpg"/>
+        </li>
+      </ul>
+      ]]>
+    </change-notes>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <!-- uncomment to enable plugin in all products
+    <depends>com.intellij.modules.lang</depends>
+    -->
+
+    <idea-version since-build="183"/>
+    <depends>com.intellij.modules.java</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <!-- Add your extensions here -->
+      <!--<applicationConfigurable instance="com.sogou.adstream.status.code.sync.component.SyncSetting"/>-->
+      <projectService serviceInterface="com.xdxiaodao.code.sync.component.SyncSetting"
+        serviceImplementation="com.xdxiaodao.code.sync.component.SyncSetting"/>
+
+      <projectConfigurable instance="com.xdxiaodao.code.sync.configurable.SyncConfigurable"/>
+    </extensions>
+
+    <project-components>
+      <component>
+        <implementation-class>com.xdxiaodao.code.sync.component.AutoSyncComponent</implementation-class>
+      </component>
+    </project-components>
+
+    <actions>
+    </actions>
+</idea-plugin>
